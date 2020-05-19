@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-        /* NOTE: public IntList () { }  would also work. */
+    /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -81,18 +81,9 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        if (A == null) {
-            return B;
-        }
-        IntList Atail = A;
-        while (Atail == null) {
-            Atail = Atail.rest;
-        }
-        Atail.rest = B;
-        return A;
+        //TODO:  fill in method
+        return null;
     }
-    //TODO:  fill in method
-
 
     /**
      * Returns a list consisting of the elements of A followed by the
@@ -100,11 +91,11 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        if (A == null) {
-            return B;
-        }
-        return new IntList(A.first, catenate(A.rest, B));
+        return null;
     }
+
+
+
 
 
 
@@ -239,11 +230,5 @@ public class IntList {
         out.format(")");
         return out.toString();
     }
-    public static void main(String[] args) {
-        IntList origL = IntList.of(1, 2, 3);
-        dSquareList(origL);
-
-    }
 }
-
 

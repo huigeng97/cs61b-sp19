@@ -53,13 +53,8 @@ public class combination {
 
     public static void main(String[] args){
     Solution a = new Solution();
-        int[][]b = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
-        b[0]=b[2];
-        Solution.TreeNode root = new Solution.TreeNode() {
-        };
-        root.val = -1;
-        int sum = 8;
+
 //       System.out.println(a.integerBreak(61));
-        System.out.println(a.pathSum(root,-1));
+        System.out.println(a.partition("sssv"));
        }
 }
