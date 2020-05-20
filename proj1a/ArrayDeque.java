@@ -1,5 +1,5 @@
 public class ArrayDeque<T> {
-    T[] item;
+    private T[] item;
     private int size;
     private int front;
     private int back;
@@ -30,7 +30,7 @@ public class ArrayDeque<T> {
 //        item[front] = a;
 //    }
 
-    public void resize() {
+    private void resize() {
         if(usage <= factor) {
             return;
         }
@@ -104,7 +104,7 @@ public class ArrayDeque<T> {
     }
 
     private int addpointerLast(int nextLast) {
-        if (nextLast != item.length - 1) {
+        if (nextLast < item.length - 1) {
             // move Last pointer forward
             nextLast += 1;
         } else {

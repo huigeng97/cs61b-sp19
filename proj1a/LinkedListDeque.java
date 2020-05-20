@@ -38,20 +38,20 @@ public class LinkedListDeque<T>{
 //        size = 1;
 //    }
 
-    public T addLast(T a) {
+    public void addLast(T a) {
         node b = new node(a, sentinalBack.Front, sentinalBack);
         b.Front.Back = b;
         b.Back.Front = b;
         size += 1;
-        return a;
+        return;
     }
 
-    public T addFirst(T a) {
+    public void addFirst(T a) {
         node b = new node(a, sentinalFront, sentinalFront.Back);
         b.Front.Back = b;
         b.Back.Front = b;
         size += 1;
-        return a;
+        return;
     }
 
     public T removeLast() {
@@ -59,7 +59,7 @@ public class LinkedListDeque<T>{
             return null;
         }
         node b = sentinalBack.Front;
-        b.Back.Front = sentinalBack;
+        b.Front.Back = sentinalBack;
         sentinalBack.Front = b.Front;
         size -= 1;
         return b.item;
@@ -70,7 +70,7 @@ public class LinkedListDeque<T>{
             return null;
         }
         node b = sentinalFront.Back;
-        b.Back.Front = sentinalFront;
+        b.Front.Back = sentinalFront;
         sentinalFront.Back = b.Back;
         size -= 1;
         return b.item;
