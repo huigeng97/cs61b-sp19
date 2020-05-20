@@ -29,21 +29,22 @@ public class ArrayDeque<Item> {
     }
 
     public void resize() {
-        if(usage < factor) {
+        if(usage <= factor) {
             return;
         }
         else {
             Item[] newitem = (Item[]) new Object[(int) (size/factor)];
-            for(int i = 0; i<size; i++) {
-                newitem[i] = this.get(i);
+            for(int i = 0; i<=size; i++) {
+                newitem[i] = get(i);
             }
             front = 0;
-            back = size -1;
+            back = size;
             item = newitem;
         }
     }
 
     public Item addLast(Item a) {
+
         item[back] = a;
         back = addpointerLast(back);
         size += 1;
@@ -62,6 +63,9 @@ public class ArrayDeque<Item> {
     }
 
     public Item removeLast() {
+        if (size == 0) {
+            return null;
+        }
         Item a = item[back - 1];
         back = back - 1;
         item[back] = null;
@@ -72,6 +76,9 @@ public class ArrayDeque<Item> {
     }
 
     public Item removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         Item a = item[front];
         item[front] = null;
         front = front + 1;
@@ -109,14 +116,21 @@ public class ArrayDeque<Item> {
 
     public void printDeque() {
         for (int i = 0; i < size; i++) {
-            System.out.println(item[i]);
+            System.out.println(get(i));
         }
     }
 
     public Item get(int index) {
-        if (index < back - front)
+        if (index < (back - front)) {
             return this.item[index + front];
-        else return null;
+        } else {
+            if (front + index <item.length){
+                return item[front + index];
+            } else {
+                return item[index - item.length + front];
+            }
+        }
+
     }
 
 }

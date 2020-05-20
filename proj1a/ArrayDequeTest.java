@@ -1,6 +1,8 @@
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /** Dummy test cases. */
 public class ArrayDequeTest {
 
@@ -144,9 +146,9 @@ public class ArrayDequeTest {
         array.printDeque();
     }
 
-
     @Test
     public void removeFirstLast3() {
+
         System.out.println("Perform removeFirstLast3");
 
         ArrayDeque<Integer> array = new ArrayDeque<>();
@@ -179,7 +181,23 @@ public class ArrayDequeTest {
         }
 
     }
+    @Test
+    public void printDQ () {
+        System.out.println("Perform printDQ");
 
+        ArrayDeque<Integer> array = new ArrayDeque<>();
+
+        for (int i = 0; i <= 16; i++) {
+            if (i % 2 == 0) {
+                array.addFirst(i);
+            } else {
+                array.addLast(i);
+            }
+
+        }
+        System.out.println(array.get(2));
+//        array.printDeque();
+    }
 
     @Test
     public void removeFirstLast4() {
