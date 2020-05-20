@@ -1,9 +1,9 @@
-public class LinkedListDeque<Item>{
+public class LinkedListDeque<T>{
     public class node {
         node Front;
         node Back;
-        Item item;
-        public node (Item i, node f, node b) {
+        T item;
+        public node (T i, node f, node b) {
             Front = f;
             Back = b;
             item = i;
@@ -14,7 +14,7 @@ public class LinkedListDeque<Item>{
             item = null;
         }
     }
-    int size;
+    private int size;
     private node sentinalFront;
     private node sentinalBack;
 
@@ -29,32 +29,32 @@ public class LinkedListDeque<Item>{
         sentinalBack.Front = sentinalFront;
         size = 0;
     }
-    public LinkedListDeque(Item a) {
-        sentinalFront = new node(null,null,null);
-        sentinalBack = new node(null,null,null);
-        node b = new node(a, sentinalFront,sentinalBack);
-        sentinalFront.Back = b;
-        sentinalBack.Front = b;
-        size = 1;
-    }
+//    public LinkedListDeque(T a) {
+//        sentinalFront = new node(null,null,null);
+//        sentinalBack = new node(null,null,null);
+//        node b = new node(a, sentinalFront,sentinalBack);
+//        sentinalFront.Back = b;
+//        sentinalBack.Front = b;
+//        size = 1;
+//    }
 
-    public Item addLast(Item a) {
+    public T addLast(T a) {
         node b = new node(a, sentinalBack.Front, sentinalBack);
         b.Front.Back = b;
-        sentinalBack.Front = b;
+        b.Back.Front = b;
         size += 1;
         return a;
     }
 
-    public Item addFirst(Item a) {
+    public T addFirst(T a) {
         node b = new node(a, sentinalFront, sentinalFront.Back);
         b.Front.Back = b;
-        sentinalFront.Back = b;
+        b.Back.Front = b;
         size += 1;
         return a;
     }
 
-    public Item removeLast() {
+    public T removeLast() {
         node b = sentinalBack.Front;
         b.Back.Front = sentinalBack;
         sentinalBack.Front = b.Front;
@@ -62,7 +62,7 @@ public class LinkedListDeque<Item>{
         return b.item;
     }
 
-    public Item removeFirst() {
+    public T removeFirst() {
         node b = sentinalFront.Back;
         b.Back.Front = sentinalFront;
         sentinalFront.Back = b.Back;
@@ -82,7 +82,7 @@ public class LinkedListDeque<Item>{
         }
     }
 
-    public Item get(int index) {
+    public T get(int index) {
         node indexnode = sentinalFront;
         if (index >= size || index <0) {
             return null;
@@ -93,7 +93,7 @@ public class LinkedListDeque<Item>{
         return indexnode.item;
     }
 
-    public Item getRecursive(int index) {
+    public T getRecursive(int index) {
         node indexnode = sentinalFront;
         if(index == 0) {
             return indexnode.Back.item;
@@ -101,7 +101,7 @@ public class LinkedListDeque<Item>{
         return traverse(indexnode.Back,index);
     }
 
-    public Item traverse(node n, int index) {
+    private T traverse(node n, int index) {
         if(index == 0) {
             return n.item;
         }

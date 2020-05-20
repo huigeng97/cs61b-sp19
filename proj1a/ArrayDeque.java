@@ -1,17 +1,19 @@
-public class ArrayDeque<Item> {
-    Item[] item;
-    int size;
-    int front;
-    int back;
-    static double factor = 0.25;
-    float usage;
+public class ArrayDeque<T> implements Deque<T> {
+    T[] item;
+    private int size;
+    private int front;
+    private int back;
+    private static double factor = 0.25;
+    private float usage;
 
     public int size() {
         return size;
     }
 
+
+
     public ArrayDeque() {
-        item = (Item[]) new Object[8];
+        item = (T[]) new Object[8];
         size = 0;
         usage = 0;
         front = 2;
@@ -19,21 +21,21 @@ public class ArrayDeque<Item> {
 
     }
 
-    public ArrayDeque(Item a) {
-        item = (Item[]) new Object[8];
-        int size = 1;
-        usage = (float) size / (float) item.length;
-        front = 2;
-        back = 3;
-        item[front] = a;
-    }
+//    public ArrayDeque(T a) {
+//        item = (T[]) new Object[8];
+//        int size = 1;
+//        usage = (float) size / (float) item.length;
+//        front = 2;
+//        back = 3;
+//        item[front] = a;
+//    }
 
     public void resize() {
         if(usage <= factor) {
             return;
         }
         else {
-            Item[] newitem = (Item[]) new Object[(int) (size/factor)];
+            T[] newitem = (T[]) new Object[(int) (size/factor)];
             for(int i = 0; i<=size; i++) {
                 newitem[i] = get(i);
             }
@@ -43,30 +45,32 @@ public class ArrayDeque<Item> {
         }
     }
 
-    public Item addLast(Item a) {
+    public void addLast(T a) {
 
         item[back] = a;
         back = addpointerLast(back);
         size += 1;
         usage = (float) size / (float) item.length;
         resize();
-        return a;
+        return;
     }
 
-    public Item addFirst(Item a) {
+
+
+    public void addFirst(T a) {
         front = addpointerFirst(front);
         item[front] = a;
         size += 1;
         usage = (float) size / (float) item.length;
         resize();
-        return a;
+        return;
     }
 
-    public Item removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
-        Item a = item[back - 1];
+        T a = item[back - 1];
         back = back - 1;
         item[back] = null;
         size = size - 1;
@@ -75,11 +79,11 @@ public class ArrayDeque<Item> {
         return a;
     }
 
-    public Item removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
-        Item a = item[front];
+        T a = item[front];
         item[front] = null;
         front = front + 1;
         size = size - 1;
@@ -110,6 +114,9 @@ public class ArrayDeque<Item> {
         return nextLast;
     }
 
+
+
+
     public boolean isEmpty() {
         return (size == 0);
     }
@@ -120,7 +127,7 @@ public class ArrayDeque<Item> {
         }
     }
 
-    public Item get(int index) {
+    public T get(int index) {
         if (index < (back - front)) {
             return this.item[index + front];
         } else {
