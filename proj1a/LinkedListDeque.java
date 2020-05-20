@@ -55,6 +55,9 @@ public class LinkedListDeque<T>{
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         node b = sentinalBack.Front;
         b.Back.Front = sentinalBack;
         sentinalBack.Front = b.Front;
@@ -63,6 +66,9 @@ public class LinkedListDeque<T>{
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         node b = sentinalFront.Back;
         b.Back.Front = sentinalFront;
         sentinalFront.Back = b.Back;
